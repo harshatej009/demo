@@ -2,8 +2,8 @@ package com.example.demo;
 
 public class OutputData {
 	
-	public void result()
+	public String result()
 	{
-	System.out.println("Hello");
+	return "SUCCESS";
 	}
 }
