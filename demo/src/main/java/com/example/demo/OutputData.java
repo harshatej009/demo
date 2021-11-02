@@ -4,6 +4,7 @@ public class OutputData {
 	
 	public String result()
 	{
+	System.out.println("----");	
 	return "SUCCESS";
 	}
 }
