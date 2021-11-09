@@ -9,13 +9,22 @@ pipeline {
            steps {
                   sh 'mvn -v'
                   echo 'building the application'
+                  sh 'mvn -B -DskipTests clean package'
+                  stash includes: 'target/*.jar',name:'targetfiles'
                 }
         }
-     stage("deploy")
+     stage("Test")
         {
-           steps {
-                  echo 'deploying the application'
+          agent {
+            docker { image 'maven:latest'}
                 }
+           steps {
+                  echo 'Testing application'
+                  sh 'mvn test'
+                }
+          post{
+            always{junit 'target/surefire-reports/*.xml'}
+          }
         }
         }
 }
