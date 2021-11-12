@@ -20,9 +20,10 @@ pipeline {
             docker { image 'maven:latest'}
                 }
            steps {
+               dir("demo"){
                   echo 'Testing application'
                   sh 'mvn test'
-                }
+               }}
           post{
             always{junit 'target/surefire-reports/*.xml'}
           }
