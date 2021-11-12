@@ -24,9 +24,7 @@ pipeline {
                   echo 'Testing application'
                   sh 'mvn test'
                }}
-          post{
-            always{junit 'target/surefire-reports/*.xml'}
-          }
+      
         }
         }
 }
