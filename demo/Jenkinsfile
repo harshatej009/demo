@@ -7,11 +7,12 @@ pipeline {
             docker { image 'maven:latest'}
                 }
            steps {
+             dir("demo"){
                   sh 'mvn -v'
                   echo 'building the application'
                   sh 'mvn -B -DskipTests clean package'
                   stash includes: 'target/*.jar',name:'targetfiles'
-                }
+             }}
         }
      stage("Test")
         {
